@@ -1,0 +1,37 @@
+﻿@model IEnumerable<LogistX.Models.Route>
+@{
+    ViewData["Title"] = "Routes";
+}
+
+<h2>Список маршрутов</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Начальная точка</th>
+            <th>Конечная точка</th>
+            <th>Дата начала</th>
+            <th>Дата окончания</th>
+            <th>Водитель</th>
+            <th>Статус маршрута</th>
+            <th>Цена за тонну</th>
+            <th>Дистанция</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var route in Model)
+        {
+            <tr>
+                <td>@route.StartLocation</td>
+                <td>@route.EndLocation</td>
+                <td>@route.StartDate</td>
+                <td>@route.EndDate</td>
+                <td>@route.Driver?.UserName</td>
+                <td>@route.RouteStatus</td>
+                <td>@route.PricePerTon</td>
+                <td>@route.Distance</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="Create" class="btn btn-primary">Создать новый маршрут</a>

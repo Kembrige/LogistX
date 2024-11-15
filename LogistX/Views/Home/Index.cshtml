@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Главная";
+}
+
+<h2 class="text-center">Добро пожаловать в систему LogistX</h2>
+
+<div class="text-center mt-4">
+    <img src="~/images/truck.jpg" alt="Фура" class="img-fluid" style="max-width: 80%; border-radius: 5px;">
+</div>
+
+<div class="text-center mt-4">
+    @if (User.Identity?.IsAuthenticated ?? false)
+    {
+        <p>Вы вошли как: <b>@User.Identity.Name</b>.</p>
+        <a asp-controller="Invoices" asp-action="Index" class="btn btn-primary">Просмотреть инвойсы</a>
+    }
+    else
+    {
+        <a asp-controller="Account" asp-action="Login" class="btn btn-success">Войти</a>
+        <a asp-controller="Account" asp-action="Register" class="btn btn-primary">Регистрация</a>
+    }
+</div>

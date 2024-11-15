@@ -1,0 +1,36 @@
+﻿@model IEnumerable<LogistX.Models.Invoice>
+
+<<h2>Инвойсы</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Компания</th>
+            <th>Маршрут</th>
+            <th>Сумма</th>
+            <th>Дата</th>
+            <th>PDF</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var invoice in Model)
+        {
+            <tr>
+                <td>@invoice.Company.Name</td>
+                <td>@invoice.Route.StartLocation - @invoice.Route.EndLocation</td>
+                <td>@invoice.Amount руб.</td>
+                <td>@invoice.Date.ToShortDateString()</td>
+                <td>
+                    <form asp-action="DownloadPDF" asp-controller="Invoices" method="Get" style="display: inline-flex;">
+                        <input type="hidden" name="Id" class="form-control" value="@invoice.Id" />
+                        <button type="submit" class="form-control-sm d-inline p-2 h-100 w-50"
+                                style="color: #fff; background-color: #28a745; border: none; border-radius: 5px;">
+                            Скачать
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="Create" class="btn btn-primary">Создать новый инвойс</a>
